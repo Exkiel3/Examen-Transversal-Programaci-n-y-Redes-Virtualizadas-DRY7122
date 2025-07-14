@@ -1,0 +1,13 @@
+---
+- name: CONFIGURE IPV6 ON LOOPBACK 33
+  hosts: CSR1kv
+  gather_facts: no
+  connection: local
+
+  tasks:
+    - name: CONFIGURE IPV6 ADDRESSES
+      ios_config:
+        parents: "interface loopback33"
+        lines:
+          - ipv6 address 3001:ABCD:ABCD:1::1/128
+          - ipv6 address FE80::1 link-local
